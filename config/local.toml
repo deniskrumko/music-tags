@@ -1,0 +1,112 @@
+[root_dir.yandex]
+name = "Яндекс Диск"
+path = "/Users/deniskrumko/Yandex.Disk.localized/Музыка"
+ignored_dirs = ["Various Other Things"]
+
+[tag.type]
+values = [
+    "acoustic",
+    "heavy",
+    "other",
+    "piano",
+    "polystra",
+]
+default = "heavy"
+multiselect = false
+required = true
+
+[tag.speed]
+values = ["slow", "normal", "fast"]
+default = "normal"
+multiselect = false
+required = true
+
+[tag.mood]
+values = [
+    "aggressive",
+    "arabic",
+    "dancing",
+    "epic",
+    "funk",
+    "grunge",
+    "headbang",
+    "jazz",
+    "joy_like_funny",
+    "joy_like_kind",
+    "medieval",
+    "marching",
+    "mystic",
+    "other",
+    "punk",
+    "quirky",
+    "sad_like_depressed",
+    "sad_like_kind",
+]
+multiselect = true
+required = true
+
+[tag.state]
+values = ["riff", "melody", "parts", "full"]
+default = "riff"
+multiselect = false
+required = true
+
+[tag.instrument]
+values = ["guitar", "ukulele", "bass", "piano"]
+default = "guitar"
+multiselect = false
+required = true
+
+[tag.drop]
+values = ["standart", "drop"]
+multiselect = false
+required = false
+
+[tag.sing]
+values = ["no", "yes"]
+default = "no"
+multiselect = false
+required = true
+
+[tag.language]
+values = ["rus", "eng", "both"]
+multiselect = false
+required = false
+
+[tag.feature]
+values = [
+    "async",
+    "pisk",
+    "delay",
+    "oldie",
+    "organ-sound",
+]
+default = ""
+multiselect = true
+required = false
+
+[tag.sounds_like]
+values = [
+    "Beatles",
+    "Lumen",
+    "Machine Head",
+    "Metallica",
+    "Nirvana",
+    "Rammstein",
+    "Royal Blood",
+    "Stratovarius",
+    "Tool",
+    "Ария",
+]
+default = ""
+multiselect = true
+required = false
+
+[tag.rating]
+values = [
+    "dream",
+    "cool",
+    "bad",
+]
+default = "cool"
+required = true
