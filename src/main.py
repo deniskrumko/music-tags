@@ -1,9 +1,10 @@
 from app import TaggingApp
-from music import MusicClient
+
+# from music import MusicClient
 
 
 def main() -> None:
-    MusicClient()
+    # MusicClient().tag_options
     app = TaggingApp()
     app.run()
 

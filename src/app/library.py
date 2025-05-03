@@ -11,7 +11,10 @@ from textual.widgets import (
 )
 
 from music import MusicClient
-from music.resources import MusicDir
+from music.directories import (
+    MusicDir,
+    MusicFileType,
+)
 
 
 class LibraryScreen(Screen):
@@ -98,7 +101,7 @@ class LibraryScreen(Screen):
             table.add_column(text, key=key)
 
         self.mdirs: list[MusicDir] = sorted(
-            self.client.music_dirs,
+            self.client.find_music_dirs(),
             key=lambda mdir: mdir.name_without_tags,
         )
 
@@ -114,10 +117,10 @@ class LibraryScreen(Screen):
 
             table.add_row(
                 mdir.name_without_tags,
-                len(mdir.audio_files),
-                len(mdir.logicx_files),
-                len(mdir.gtp_files),
-                len(mdir.other_files),
+                mdir.count_files(MusicFileType.AUDIO),
+                mdir.count_files(MusicFileType.LOGIC_X),
+                mdir.count_files(MusicFileType.GUITAR_PRO),
+                mdir.count_files(MusicFileType.OTHER),
                 colored_path,
                 label=str(i),
             )

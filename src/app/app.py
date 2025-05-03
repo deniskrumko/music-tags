@@ -33,12 +33,12 @@ class TaggingApp(App):
         self.client = MusicClient()
 
     def compose(self) -> ComposeResult:
-        yield Header(show_clock=True)
+        yield Header()
         yield Container(
             ListView(
+                ListItem(Label("Add tags"), id="tagging"),
                 ListItem(Label("Library"), id="library"),
                 ListItem(Label("Statistics"), id="statistics"),
-                ListItem(Label("Start Tagging"), id="tagging"),
                 id="main_menu",
             ),
             id="main_container",

@@ -4,11 +4,15 @@ from typing import Iterator
 
 import toml
 
-from .resources import (
-    LOGIC_PRO_EXT,
-    MACOS_DS_STORE,
+from .directories import (
+    IGNORED_FILES,
+    LOGICX_EXT,
     MusicDir,
     RootDir,
+)
+from .tags import (
+    Tag,
+    TagOptions,
 )
 
 
@@ -17,12 +21,11 @@ class MusicClient:
     def __init__(self, config_path: str = "config/local.toml"):
         """Initialize class instance."""
         self.config_path = config_path
-        self.music_dirs = list(self.find_music_dirs())
 
     def show_music_dir_tags(self) -> None:
         """Show all unique tags located in music dir name (usually in brackets)."""
         result = set()
-        for mdir in self.music_dirs:
+        for mdir in self.find_music_dirs():
             result.update(set(mdir.name_tags))
 
         for i, tag in enumerate(sorted(result)):
@@ -76,7 +79,7 @@ class MusicClient:
         path: Path,
         ignored_dirs: list[str] | None = None,
     ) -> bool:
-        if path.name.endswith(LOGIC_PRO_EXT):
+        if path.name.endswith(LOGICX_EXT):
             return False
 
         if ignored_dirs and path.name in ignored_dirs:
@@ -89,7 +92,7 @@ class MusicClient:
         path: Path,
         ignored_files: list[str] | None = None,
     ) -> bool:
-        if path.name == MACOS_DS_STORE:
+        if path.name in IGNORED_FILES:
             return False
 
         if ignored_files and path.name in ignored_files:
@@ -101,6 +104,14 @@ class MusicClient:
     def config(self) -> dict:
         return dict(toml.load(self.config_path))
 
+    @cached_property
+    def tag_options(self) -> TagOptions:
+        return {
+            tag_name: Tag(name=tag_name, **options)
+            for tag_name, options in self.config["tag"].items()
+        }
+
 
 if __name__ == "__main__":
     app = MusicClient()
+    app.tag_options
